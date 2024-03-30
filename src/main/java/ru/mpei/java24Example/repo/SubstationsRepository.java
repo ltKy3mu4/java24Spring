@@ -26,7 +26,10 @@ public class SubstationsRepository {
     }
 
     public Substation getById(long id){
-        return entityManager.find(Substation.class, id);
+//        return entityManager.find(Substation.class, id);
+        return entityManager.createQuery("select s from Equipment e join e.substation s where s.id = :id", Substation.class)
+                .setParameter("id", id)
+                .getSingleResult();
     }
 
     public boolean deleteById(long id){
@@ -45,6 +48,8 @@ public class SubstationsRepository {
     public List<Substation> getAll(){
         return entityManager.createQuery("select s from Substation s", Substation.class)
                 .getResultList();
+//        return entityManager.createQuery("select s from Equipment e join e.substation s", Substation.class)
+//                .getResultList();
     }
 
     public List<Substation> getAllForVoltageClass(int vclass){

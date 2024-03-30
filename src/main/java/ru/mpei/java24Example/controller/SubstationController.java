@@ -15,7 +15,8 @@ public class SubstationController {
 
     @GetMapping("substation/get")
     public Substation get(@RequestParam long id){
-        return repo.getById(id);
+        Substation byId = repo.getById(id);
+        return byId;
     }
 
     @PostMapping("substation/save")
@@ -30,7 +31,8 @@ public class SubstationController {
 
     @GetMapping("substation/all")
     public List<Substation> getAll(){
-        return repo.getAll();
+        List<Substation> all = repo.getAll();
+        return all;
     }
 
     @GetMapping("substation/all-for-vclass")
